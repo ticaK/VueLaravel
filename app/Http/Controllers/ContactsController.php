@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Contact;
 class ContactsController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        return Contact::all();
     }
 
     /**
@@ -21,10 +21,7 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -34,8 +31,19 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+       \Log::info(print_r($request->all(),true));
+       //ako napisemo parametar true funkcija vraca string, a ako ne napisemo vraca true
+      return  Contact::create([
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
+            'email'=>$request->email 
+       ]);
+    //    Contact::create($request->all()) 
+    //na ovaj nacin nam dolazi first_name isto kao sto je napisan u bazi, mora se isto zvati i ovdje i u bazi
+    
+
+}
+
 
     /**
      * Display the specified resource.
@@ -54,10 +62,7 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
