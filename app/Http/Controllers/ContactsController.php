@@ -75,6 +75,7 @@ class ContactsController extends Controller
     {
        $contact->update($request->all());
        return $contact;
+       //napomena:update radi save
     }
 
     //ili
@@ -94,6 +95,6 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Contact::destroy($id);
     }
 }
