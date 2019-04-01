@@ -53,7 +53,7 @@ class ContactsController extends Controller
      */
     public function show($id)
     {
-        //
+       return Contact::findOrFail($id);
     }
 
     /**
@@ -71,10 +71,20 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
-        //
+       $contact->update($request->all());
+       return $contact;
     }
+
+    //ili
+    // public function update(Request $request, $id)
+    // {
+    //     $contact=Contact::findOrFail($id);
+    //     return $contact->update($request->all());
+        
+    
+    // }
 
     /**
      * Remove the specified resource from storage.
