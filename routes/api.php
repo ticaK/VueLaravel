@@ -22,3 +22,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('contacts','ContactsController');
 
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+    // kada hocemo da se ulogujemo moramo da gadjamo api/auth/login
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    //kada je token pri isteku da se 
+    Route::post('me', 'AuthController@me');
+
+});
+
