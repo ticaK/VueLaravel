@@ -20,7 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::get('contacts','ContactsController@index');
 //posto nam treba vise metoda koristicemo resource
 
-Route::resource('contacts','ContactsController');
+Route::resource('contacts','ContactsController')->middleware('auth:api');
+//sa ovim middle smo zaklucali kontakte
 
 Route::group([
 
